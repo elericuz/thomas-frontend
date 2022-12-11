@@ -9,13 +9,13 @@ const { initializeApp } = require('firebase/app');
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyB5kujJCSyoF7gWTGV9Eu5GAuQ0c-TrqnU",
-    authDomain: "metrodelima.firebaseapp.com",
-    projectId: "metrodelima",
-    storageBucket: "metrodelima.appspot.com",
-    messagingSenderId: "474608806029",
-    appId: "1:474608806029:web:a32ba8206a16082ac61ac4",
-    measurementId: "G-LHRLT76NYS"
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID
 };
 
 // Initialize Firebase
