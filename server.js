@@ -24,12 +24,12 @@ const analytics = getAnalytics(app);
 
 // Constants
 const http = require('http');
-const app = require('./app');
+const iApp = require('./app');
 
 const PORT = process.env.DEFAULT_PORT;
 const HOST = '0.0.0.0';
 
-const server = http.createServer(app);
+const server = http.createServer(iApp);
 
 server.listen(PORT, HOST)
 console.log(`Running on https://${HOST}:${PORT}`);
