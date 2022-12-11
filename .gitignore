@@ -102,3 +102,13 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+!.gitkeep
+.DS_Store
+.idea
+CAS
+CAS.pub
+
+nodemon.json
+.dockerignore
