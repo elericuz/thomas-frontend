@@ -112,3 +112,7 @@ CAS.pub
 
 nodemon.json
 .dockerignore
+/public/assets/foundation-datepicker
+/public/assets/foundation-icons
+/public/assets/foundation-sites
+/public/assets/jquery

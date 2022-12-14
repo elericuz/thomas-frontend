@@ -6,3 +6,7 @@ const jwt = require('jsonwebtoken');
 exports.index = async (req, res, next) => {
     res.render('home/index');
 }
+
+exports.errorPage = async (req, res, next) => {
+    res.render('home/404');
+}

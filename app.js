@@ -46,12 +46,18 @@ app.use(express.urlencoded({ extended: true }));
 const homeRoutes = require('./src/routes/home');
 app.use('/', homeRoutes);
 
+const userRoutes = require('./src/routes/users');
+app.use('/user', userRoutes);
+
+const transactionRoutes = require('./src/routes/transactions');
+app.use('/transactions', transactionRoutes);
+
+const balanceRoutes = require('./src/routes/balances');
+app.use('/balances', balanceRoutes);
+
 // error page
 app.use((req, res) => {
-    res.status(404).json({
-        "error": '404',
-        "messages": 'Hello there!'
-    })
+    res.redirect('/404');
 })
 
 module.exports = app;

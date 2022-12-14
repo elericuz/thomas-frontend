@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body>
+
+<%- include('../partials/nav.ejs') %>
+
+<div class="grid-container">
+    <div class="cell small-12">
+        <div class="grid-x">
+            <div class="cell small-7 medium-10">
+                <h2 class="margin-bottom-0">Listado de todas las transacciones</h2><br>
+            </div>
+        </div>
+    </div>
+    <div class="cell small-12">
+        <div class="float-left">
+            <div class="grid-x grid-padding-x search-container">
+                <div class="cell small-5 medium-4 padding-top-1 font-bold">Número de Tarjeta:</div>
+                <div class="cell small-6 medium-6 text-vertical-center">
+                    <input type="text" name="search" id="search" value="" onkeydown="search(this);"
+                           autocomplete="off" placeholder="Número externo de la Tarjeta">
+                </div>
+                <div class="cell medium-1 margin-top-1 hide-for-small-only search-icon" onclick="getTransaction();">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="hr-title-separator">
+    <div class="cell small-12">
+        <div class="float-right">
+            Mostrando transacciones del <%= showing.from %> al <%= showing.to %> de <%= total %>
+        </div>
+        <table class="stack">
+            <thead>
+            <tr>
+                <th class="medium-1 text-center"># Externo</th>
+                <th class="medium-1 text-center"># Interno</th>
+                <th class="medium-2 text-center">Estación</th>
+                <th class="medium-1 text-center">Fecha</th>
+                <th class="medium-1 text-center">Hora</th>
+                <th class="medium-1 text-center">Tipo</th>
+                <th class="medium-2 text-center">Tarifa</th>
+                <th class="medium-1 text-center">Importe</th>
+                <th class="medium-1 text-center">Saldo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% transactions.forEach(transaction => { %>
+                <tr>
+                    <td style="text-align: right !important;">
+                        <a href="/transactions/<%= transaction.external_number %>"><%= transaction.external_number %></a>
+                    </td>
+                    <td style="text-align: right !important;"><%= transaction.internal_number %></td>
+                    <td><%= _.startCase(transaction.name_station) %></td>
+                    <td><%= moment(transaction.date).format('DD-MM-yyyy') %></td>
+                    <td><%= moment(transaction.date).format('HH:mm:ss') %></td>
+                    <td><%= _.startCase(transaction.operation_type) %></td>
+                    <td><%= _.startCase(transaction.fare) %></td>
+                    <td style="text-align: right !important;">
+                        S/<%= transaction.amount.toFixed(2).toLocaleString() %></td>
+                    <td style="text-align: right !important;">
+                        S/<%= transaction.purse.toFixed(2).toLocaleString() %></td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+        <%- include('../partials/pagination.ejs') %>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>
+<%- include('../partials/scripts.ejs') %>
+
+<script src="/assets/js/transactions.js"></script>
+<script>
+    $('#search').focus();
+</script>
+</body>
+</html>
