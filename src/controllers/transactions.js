@@ -25,21 +25,20 @@ exports.dashboard = async (req, res, next) => {
 
     if (page > transactions.results.totalPages) {
         res.redirect('/transactions/');
-    } else {
-        res.render('transactions/dashboard', {
-            total: transactions.results.total,
-            showing: {
-                from: ((page - 1) * limit) + 1,
-                to: ((page * limit) > transactions.results.total) ? transactions.results.total : page * limit
-            },
-            totalPages: transactions.results.totalPages,
-            currentPage: page,
-            transactions: transactions.results.data,
-            uri: 'transactions'
-        });
+        return;
     }
 
-    res.render('transactions/dashboard');
+    res.render('transactions/dashboard', {
+        total: transactions.results.total,
+        showing: {
+            from: ((page - 1) * limit) + 1,
+            to: ((page * limit) > transactions.results.total) ? transactions.results.total : page * limit
+        },
+        totalPages: transactions.results.totalPages,
+        currentPage: page,
+        transactions: transactions.results.data,
+        uri: 'transactions'
+    });
 }
 
 exports.list = async (req, res, next) => {
