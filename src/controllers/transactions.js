@@ -35,7 +35,7 @@ exports.dashboard = async (req, res, next) => {
             totalPages: transactions.results.totalPages,
             currentPage: page,
             transactions: transactions.results.data,
-            uri: 'transactions/'
+            uri: 'transactions'
         });
     }
 
@@ -68,7 +68,7 @@ exports.list = async (req, res, next) => {
     let transactions = await call(endpoint + '?' + data);
 
     if (page > transactions.results.totalPages) {
-        res.redirect('/transactions/' + externalNumber);
+        res.redirect('/transactions/get/' + externalNumber);
     } else {
         res.render('transactions/list', {
             balance: await getBalance(transactions.results.data[0].internal_number),
@@ -82,7 +82,7 @@ exports.list = async (req, res, next) => {
             internal_number: transactions.results.data[0].internal_number,
             external_number: transactions.results.data[0].external_number,
             transactions: transactions.results.data,
-            uri: 'transactions/' + externalNumber
+            uri: 'transactions/get/' + externalNumber
         });
     }
 }

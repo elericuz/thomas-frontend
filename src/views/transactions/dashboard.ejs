@@ -50,7 +50,7 @@
             <% transactions.forEach(transaction => { %>
                 <tr>
                     <td style="text-align: right !important;">
-                        <a href="/transactions/<%= transaction.external_number %>"><%= transaction.external_number %></a>
+                        <a href="/transactions/get/<%= transaction.external_number %>"><%= transaction.external_number %></a>
                     </td>
                     <td style="text-align: right !important;"><%= transaction.internal_number %></td>
                     <td><%= _.startCase(transaction.name_station) %></td>
