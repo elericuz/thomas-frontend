@@ -14,7 +14,7 @@ exports.update = async (req, res, next) => {
         return
     }
 
-    const endpoint = process.env.ENDPOINT + "/balances/force";
+    const endpoint = "/balances/force";
     let data = new URLSearchParams();
     data.append('internal_number', internalNumber);
 

@@ -15,7 +15,7 @@ exports.dashboard = async (req, res, next) => {
     const limit = 16;
     const skip = (page === 1) ? 0 : (limit * (page - 1))
 
-    const endpoint = process.env.ENDPOINT + "/transactions/get";
+    const endpoint = "/transactions/get";
     let data = new URLSearchParams();
     data.append('skip', skip);
     data.append('limit', limit);
@@ -57,7 +57,7 @@ exports.list = async (req, res, next) => {
     const limit = 16;
     const skip = (page === 1) ? 0 : (limit * (page - 1))
 
-    const endpoint = process.env.ENDPOINT + "/transactions/get";
+    const endpoint = "/transactions/get";
     let data = new URLSearchParams();
     data.append('external_number', externalNumber);
     data.append('skip', skip);
@@ -87,7 +87,7 @@ exports.list = async (req, res, next) => {
 }
 
 async function getBalance(internalNumber) {
-    const endpoint = process.env.ENDPOINT + "/balances/get";
+    const endpoint = "/balances/get";
 
     let data = new URLSearchParams();
     data.append('internal_number', internalNumber);

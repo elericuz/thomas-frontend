@@ -1,6 +1,8 @@
 const _ = require('lodash');
 const fetch = require('node-fetch')
 
+const api = process.env.ENVIRONMENT === "DEVELOPMENT" ? process.env.ENDPOINT_DEV : process.env.ENDPOINT
+
 exports.call = async (endpoint, method = 'GET', headers = null, query = null) => {
     let options = {
         method: method
@@ -14,7 +16,12 @@ exports.call = async (endpoint, method = 'GET', headers = null, query = null) =>
         options = {...options, body: query};
     }
 
-    return await fetch(endpoint, options)
+    let url = api + endpoint
+    if (process.env.ENVIRONMENT === "DEVELOPMENT") {
+        console.log(url);
+    }
+
+    return await fetch(url, options)
         .then(response => response.json())
         .then(
             data => {
