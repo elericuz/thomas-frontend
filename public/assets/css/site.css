@@ -113,6 +113,11 @@ thead tr, tfoot tr {
     font-size: 13px;
 }
 
+.brief-container thead tr, tfoot tr {
+    height: 20px;
+    font-size: 13px;
+}
+
 tbody {
     border: 1px solid #f1f1f1;
     background-color: #ffffff;
@@ -570,4 +575,9 @@ table.stack td {
             'wght' 300,
             'GRAD' 0,
             'opsz' 40
+}
+
+.brief-container {
+    background-color: #f7f7f7;
+    padding-bottom: 8px;
 }

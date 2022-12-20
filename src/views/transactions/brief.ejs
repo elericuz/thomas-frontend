@@ -1,0 +1,70 @@
+<div class="text-center padding-bottom-1">
+    <h5>Resumen de Operaciones</h5>
+    <div class="float-center subheader">Información de los últimos 5 minutos</div>
+    <div class="grid-x grid-margin-x">
+        <div class="float-center">
+            <span class="padding-right-1"><strong>Desde:</strong> <%= moment(brief.startDate).format('DD-MM-YY HH:mm:ss') %></span>
+            <span class="padding-left-1"><strong>Hasta:</strong> <%= moment(brief.endDate).format('DD-MM-YY HH:mm:ss') %></span>
+        </div>
+    </div>
+</div>
+<hr class="hr-title-separator">
+<div class="padding-horizontal-1">
+    <h6>Por Tarifa</h6>
+    <table class="stack">
+        <thead>
+        <tr>
+            <th class="medium-8 text-center">Tipo</th>
+            <th class="medium-2 text-center">Personas</th>
+            <th class="medium-2 text-center">Pagado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% brief.data[0].by_fare.forEach(value => { %>
+            <tr>
+                <td><%= _.startCase(value.fare) %></td>
+                <td style="text-align: right !important;"><%= value.total %></td>
+                <td style="text-align: right !important;">S/<%= value.paid.toFixed(2).toLocaleString() %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <h6>Por Tipo</h6>
+    <table class="stack">
+        <thead>
+        <tr>
+            <th class="medium-8 text-center">Tipo</th>
+            <th class="medium-2 text-center">Personas</th>
+            <th class="medium-2 text-center">Pagado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% brief.data[0].by_type.forEach(value => { %>
+            <tr>
+                <td><%= _.startCase(value.operation_type) %></td>
+                <td style="text-align: right !important;"><%= value.total %></td>
+                <td style="text-align: right !important;">S/<%= value.paid.toFixed(2).toLocaleString() %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <h6>Por Estación</h6>
+    <table class="stack">
+        <thead>
+        <tr>
+            <th class="medium-8 text-center">Tipo</th>
+            <th class="medium-2 text-center">Personas</th>
+            <th class="medium-2 text-center">Pagado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% brief.data[0].by_station.forEach(value => { %>
+            <tr>
+                <td><%= _.startCase(value.station) %></td>
+                <td style="text-align: right !important;"><%= value.total %></td>
+                <td style="text-align: right !important;">S/<%= value.paid.toFixed(2).toLocaleString() %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

@@ -12,7 +12,7 @@ exports.list = async (req, res, next) => {
         return;
     }
 
-    const limit = 16;
+    const limit = 40;
     const skip = (page === 1) ? 0 : (limit * (page - 1))
 
     const endpoint = "/transactions";
@@ -23,12 +23,16 @@ exports.list = async (req, res, next) => {
 
     let transactions = await call(endpoint + '?' + data);
 
+    const briefEndpoint = "/transactions/brief";
+    let brief = await call(briefEndpoint);
+
     if (page > transactions.results.totalPages) {
         res.redirect('/transactions/');
         return;
     }
 
     res.render('transactions/list', {
+        brief: brief.results,
         total: transactions.results.total,
         showing: {
             from: ((page - 1) * limit) + 1,
